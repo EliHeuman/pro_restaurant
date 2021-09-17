@@ -1,7 +1,6 @@
-version: "3"
-
+version: '3'
 services:
-  strapiexample:
+  strapi:
     image: strapi/strapi
     container_name: strapirest
     restart: unless-stopped
@@ -21,8 +20,10 @@ services:
       - ./app:/srv/app
     ports:
       - "1337:1337"
+    depends_on:
+      - mongo
 
-  mongoexample:
+  mongo:
     image: mongo
     container_name: mongorest
     restart: unless-stopped
