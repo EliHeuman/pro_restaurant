@@ -9,20 +9,26 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      name: Use Node.js ${{ matrix.node-version }}
-      uses: action/setup-node@1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build --if-present
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run build --if-present
     # - run: npm run test
 
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Login to DockerHub Registry
+<<<<<<< HEAD
         run: echo -p ${{ secrets.DOCKER_HUB_TOKEN}} |
         docker login -u ${{ secrets.DOCKERHUB_USERNAME}}
+=======
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN}} |
+         docker login -u ${{ secrets.DOCKERHUB_USERNAME}}
+>>>>>>> 9613a73c383e223ac60ac82ff70411a83f282df6
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
