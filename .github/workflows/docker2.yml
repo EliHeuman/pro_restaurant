@@ -31,8 +31,8 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Build the tagged Docker image
-        run: docker build -t EliHeuman/pro_restaurant
+        run: docker build -t eliheuman/pro_restaurant
       - name: Push the tagged Docker image
-        run: docker push EliHeuman/pro_restaurant
+        run: docker push eliheuman/pro_restaurant
 
   
