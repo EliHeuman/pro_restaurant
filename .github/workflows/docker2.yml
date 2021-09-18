@@ -27,14 +27,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-           
+          
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Build the tagged Docker image
-        run: docker build -t /pro_restaurant .
-        
+        run: docker build -t ai2elih/pro_restaurant
       - name: Push the tagged Docker image
-        run: docker push /pro_restaurant
+        run: docker push ai2elih/pro_restaurant
 
   
