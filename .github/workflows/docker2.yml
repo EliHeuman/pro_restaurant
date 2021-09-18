@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Login to DockerHub Registry
 <<<<<<< HEAD
-        run: echo -p ${{ secrets.DOCKER_HUB_TOKEN}} |
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN}} |
         docker login -u ${{ secrets.DOCKERHUB_USERNAME}}
 =======
         run: echo ${{ secrets.DOCKER_HUB_TOKEN}} |
