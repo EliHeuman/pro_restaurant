@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKER_HUB_TOKEN}} |
+        run: echo -p ${{ secrets.DOCKER_HUB_TOKEN}} |
         docker login -u ${{ secrets.DOCKERHUB_USERNAME}}
       - name: Get the version
         id: vars
