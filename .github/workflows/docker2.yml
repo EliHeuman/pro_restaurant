@@ -1,0 +1,34 @@
+name: Docker Image RestCI 
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      name: Use Node.js ${{ matrix.node-version }}
+      uses: action/setup-node@1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run build --if-present
+    # - run: npm run test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN}} |
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME}}
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Build the tagged Docker image
+        run: docker build -t EliHeuman/pro_restaurant
+      - name: Push the tagged Docker image
+        run: docker push EliHeuman/pro_restaurant
+
+  
