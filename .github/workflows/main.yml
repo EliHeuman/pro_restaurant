@@ -23,9 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: akejarvis/s3-sync-action@master
+      - uses: prorestaurant/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: 'prorestaurant'
-          AWS_REGION: "us-west-2" 
+          AWS_REGION: "us-east-1" 
